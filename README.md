@@ -24,11 +24,6 @@ This project makes use of the [python-twitter](https://github.com/bear/python-tw
 pip install -Ur requirements.txt
 ```
 
-###### Run setup.py on [__Nodes__][1]
-```python
-python setup.py
-```
-
 ###### Update config.py with your Twitter App information [__Nodes__][1]
 ```python
 consumer_key = '<consumer-key>'
@@ -53,4 +48,14 @@ $ nano pybot-muncher.py
 # Change <password> to the password of your [Node][1] RPi
 subprocess.call("sshpass -p <password> ssh pi@<node1-ip-address> 'cd ~ && python pybot-twitter/process_stream_data.py > /home/pi/pybot-twitter/runlog.txt'", shell=True)
 
+```
+
+###### Setup a cron job to call the ```pybot-muncher``` on [Node][2] 
+```sh 
+$ crontab -e
+```
+
+###### Add the following line & save the file 
+```python 
+*/5 * * * * /home/pi/pybot-muncher.py
 ```
